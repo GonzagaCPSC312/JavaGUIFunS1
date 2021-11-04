@@ -50,9 +50,19 @@ public class MyConstraintLayout extends ConstraintLayout {
         button01.setText("01");
         addView(button01);
 
+        Button button10 = new Button(context);
+        button10.setId(View.generateViewId());
+        button10.setText("10");
+        addView(button10);
+
+        Button button11 = new Button(context);
+        button11.setId(View.generateViewId());
+        button11.setText("11");
+        addView(button11);
+
         // add button00's constraints... need at least 1 horiz and 1 vert
-        constraintSet.constrainWidth(button00.getId(), ConstraintSet.WRAP_CONTENT);
-        constraintSet.constrainHeight(button00.getId(), ConstraintSet.WRAP_CONTENT);
+        constraintSet.constrainWidth(button00.getId(), ConstraintSet.MATCH_CONSTRAINT);
+        constraintSet.constrainHeight(button00.getId(), ConstraintSet.MATCH_CONSTRAINT);
         constraintSet.connect(button00.getId(), ConstraintSet.START,
                 ConstraintSet.PARENT_ID, ConstraintSet.START);
         // android:constrainStartToStartOf="parent"
@@ -60,10 +70,12 @@ public class MyConstraintLayout extends ConstraintLayout {
                 button01.getId(), ConstraintSet.START);
         constraintSet.connect(button00.getId(), ConstraintSet.TOP,
                 ConstraintSet.PARENT_ID, ConstraintSet.TOP);
+        constraintSet.connect(button00.getId(), ConstraintSet.BOTTOM,
+                button10.getId(), ConstraintSet.TOP);
 
         // add button01's constraints... need at least 1 horiz and 1 vert
-        constraintSet.constrainWidth(button01.getId(), ConstraintSet.WRAP_CONTENT);
-        constraintSet.constrainHeight(button01.getId(), ConstraintSet.WRAP_CONTENT);
+        constraintSet.constrainWidth(button01.getId(), ConstraintSet.MATCH_CONSTRAINT);
+        constraintSet.constrainHeight(button01.getId(), ConstraintSet.MATCH_CONSTRAINT);
         constraintSet.connect(button01.getId(), ConstraintSet.START,
                 button00.getId(), ConstraintSet.END);
         constraintSet.connect(button01.getId(), ConstraintSet.END,
@@ -74,5 +86,28 @@ public class MyConstraintLayout extends ConstraintLayout {
                 button00.getId(), ConstraintSet.BOTTOM);
 
         // task: finish the 2x2 grid
+        // add button10's constraints... need at least 1 horiz and 1 vert
+        constraintSet.constrainWidth(button10.getId(), ConstraintSet.MATCH_CONSTRAINT);
+        constraintSet.constrainHeight(button10.getId(), ConstraintSet.MATCH_CONSTRAINT);
+        constraintSet.connect(button10.getId(), ConstraintSet.START,
+                ConstraintSet.PARENT_ID, ConstraintSet.START);
+        constraintSet.connect(button10.getId(), ConstraintSet.END,
+                button11.getId(), ConstraintSet.START);
+        constraintSet.connect(button10.getId(), ConstraintSet.TOP,
+                button00.getId(), ConstraintSet.BOTTOM);
+        constraintSet.connect(button10.getId(), ConstraintSet.BOTTOM,
+                ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM);
+
+        // add button11's constraints... need at least 1 horiz and 1 vert
+        constraintSet.constrainWidth(button11.getId(), ConstraintSet.MATCH_CONSTRAINT);
+        constraintSet.constrainHeight(button11.getId(), ConstraintSet.MATCH_CONSTRAINT);
+        constraintSet.connect(button11.getId(), ConstraintSet.START,
+                button10.getId(), ConstraintSet.END);
+        constraintSet.connect(button11.getId(), ConstraintSet.END,
+                ConstraintSet.PARENT_ID, ConstraintSet.END);
+        constraintSet.connect(button11.getId(), ConstraintSet.TOP,
+                button10.getId(), ConstraintSet.TOP);
+        constraintSet.connect(button11.getId(), ConstraintSet.BOTTOM,
+                button10.getId(), ConstraintSet.BOTTOM);
     }
 }
